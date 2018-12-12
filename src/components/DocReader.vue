@@ -6,6 +6,7 @@
       @response-changed="doc = $event.detail.value"></nuxeo-document>
     <nuxeo-page-provider auto
                      provider="advanced_document_content"
+                     enrichers="thumbnail"
                      :params="params"
                      @current-page-changed="children = $event.detail.value">
     </nuxeo-page-provider>
@@ -20,10 +21,8 @@
         <li v-for="contributor in contributors" :key="contributor">{{contributor}}</li>
       </ul>
       <h3>Children:</h3>
-      <ul>
-        <li v-for="child in children" :key="child.uid">{{child.title}}</li>
-      </ul>
-    </div>    
+      <nuxeo-documents-table :documents.prop="children"></nuxeo-documents-table>
+    </div>
   </div>
 </template>
 
@@ -31,6 +30,7 @@
 import '@nuxeo/nuxeo-elements/nuxeo-connection'
 import '@nuxeo/nuxeo-elements/nuxeo-document'
 import '@nuxeo/nuxeo-elements/nuxeo-page-provider'
+import './nuxeo-documents-table'
 
 export default {
   name: 'DocReader',

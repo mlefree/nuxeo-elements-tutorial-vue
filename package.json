@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@nuxeo/nuxeo-elements": "^3.0.0-SNAPSHOT",
+    "@nuxeo/nuxeo-ui-elements": "^3.0.0-SNAPSHOT",
+    "@polymer/iron-icons": "^3.0.1",
     "@webcomponents/webcomponentsjs": "^2.2.1",
     "vue": "^2.5.17"
   },

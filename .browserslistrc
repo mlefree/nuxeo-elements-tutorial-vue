@@ -1,3 +1,4 @@
-> 1%
-last 2 versions
-not ie <= 8
+Chrome >= 49
+Firefox >= 45
+Safari >= 10
+Edge >= 13
