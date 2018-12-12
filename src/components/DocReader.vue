@@ -1,14 +1,15 @@
 <template>
   <div>
     <nuxeo-connection url="/nuxeo"></nuxeo-connection>
-    <nuxeo-document id="doc" auto
+    <nuxeo-document auto
       :doc-path="path"
       @response-changed="doc = $event.detail.value"></nuxeo-document>
     <nuxeo-page-provider auto
-                     provider="advanced_document_content"
-                     enrichers="thumbnail"
-                     :params="params"
-                     @current-page-changed="children = $event.detail.value">
+                    ref="pp"
+                    provider="advanced_document_content"
+                    enrichers="thumbnail"
+                    :params.prop="params"
+                    @current-page-changed="children = $event.detail.value">
     </nuxeo-page-provider>
 
     <div v-if="doc">
@@ -16,6 +17,10 @@
       <p>ID: {{doc.uid}}</p>
       <p>Repository: {{doc.repository}}</p>
       <p>State: {{doc.state}}</p>
+      <div class="flex">
+        <h3>Upload files:</h3>
+        <nuxeo-file @value-changed="importFile"></nuxeo-file>
+      </div>
       <h3>Contributors:</h3>
       <ul>
         <li v-for="contributor in contributors" :key="contributor">{{contributor}}</li>
@@ -30,6 +35,7 @@
 import '@nuxeo/nuxeo-elements/nuxeo-connection'
 import '@nuxeo/nuxeo-elements/nuxeo-document'
 import '@nuxeo/nuxeo-elements/nuxeo-page-provider'
+import '@nuxeo/nuxeo-ui-elements/widgets/nuxeo-file'
 import './nuxeo-documents-table'
 
 export default {
@@ -50,6 +56,15 @@ export default {
     },
     params() {
       return this.doc ? { ecm_parentId: this.doc.uid } : {};
+    }
+  },
+  methods: {
+    importFile(event) {
+      const context = {currentDocument: this.path};
+      event.target
+        .batchExecute('FileManager.Import', { context }, { nx_es_sync: 'true' })
+        .then(() => event.target.value = undefined)
+        .then(() => this.$refs.pp.fetch());
     }
   }
 }
