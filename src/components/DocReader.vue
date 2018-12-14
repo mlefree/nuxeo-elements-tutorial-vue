@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nuxeo-connection url="http://localhost:8080/nuxeo"></nuxeo-connection>
+    <nuxeo-connection url="/nuxeo"></nuxeo-connection>
 
     <nuxeo-document-suggestion
                     :router.prop="router"
@@ -21,12 +21,16 @@
     </nuxeo-page-provider>
 
     <div v-if="doc">
+
+      <h3>Metadata</h3>
+      <DocLayout :document="doc" layout="metadata" />
+
       <h2>Title: {{doc.title}}</h2>
       <p>ID: {{doc.uid}}</p>
       <p>Repository: {{doc.repository}}</p>
       <p>State: {{doc.state}}</p>
 
-      <h3>Contributors:</h3>
+      <h3>Contributors</h3>
       <ul>
         <li v-for="contributor in contributors" :key="contributor">{{contributor}}</li>
       </ul>
@@ -50,9 +54,14 @@ import '@nuxeo/nuxeo-elements/nuxeo-page-provider'
 import '@nuxeo/nuxeo-ui-elements/widgets/nuxeo-file'
 import '@nuxeo/nuxeo-ui-elements/widgets/nuxeo-document-suggestion'
 import './nuxeo-documents-table'
+import DocLayout from './DocLayout.vue'
 
 export default {
   name: 'DocReader',
+
+  components: {
+    DocLayout
+  },
 
   data: () => ({
     path: undefined,
