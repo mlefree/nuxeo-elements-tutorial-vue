@@ -2,7 +2,7 @@
 
 Our [Nuxeo Elements tutorial](https://doc.nuxeo.com/nxdoc/nuxeo-elements-tutorial/) for [Vue.js](https://vuejs.org/)
 
-![screenshot!](screenshots/nuxeo-vue.png)
+<img src="https://github.com/mlefree/nuxeo-elements-tutorial-vue/raw/master/screenshots/nuxeo-vue.png" alt="screenshot!" style="width:200px">
 
 ## Project setup
 ```
