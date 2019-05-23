@@ -2,24 +2,33 @@
 
 Our [Nuxeo Elements tutorial](https://doc.nuxeo.com/nxdoc/nuxeo-elements-tutorial/) for [Vue.js](https://vuejs.org/)
 
+![screenshot!](screenshots/nuxeo-vue.png)
+
 ## Project setup
 ```
-yarn install
+npm install
+```
+
+You should have a Nuxeo running on http://localhost:8080. 
+Please consider using [Nuxeo Docker Image](https://hub.docker.com/_/nuxeo/) :
+
+``` 
+$ docker run --name mynuxeo -p 8080:8080 -d nuxeo
 ```
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+npm run serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+npm run build
 ```
 
 ### Lints and fixes files
 ```
-yarn run lint
+npm run lint
 ```
 
 ## License
